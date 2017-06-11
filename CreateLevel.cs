@@ -174,9 +174,11 @@ public class CreateLevel : MonoBehaviour
 	//You might need this more than once...
 	void placeBallStart ()
 	{
-		ball.transform.position = new Vector3 (tracker.start.x, 1, tracker.start.z) * 2 + new Vector3 (-xExt + 1, 0, -zExt + 1);
 		//Reset Physics
+		ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
 		//Place the ball
+		ball.transform.position = new Vector3 (tracker.start.x, 1, tracker.start.z) * 2 + new Vector3 (-xExt + 1, 0, -zExt + 1);
 	}
 
 	public void EndzoneTrigger (GameObject other)

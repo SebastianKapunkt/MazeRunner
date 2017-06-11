@@ -52,7 +52,7 @@ public class BackTracking
 
 	private void backtracking (Backtracker move)
 	{
-		Debug.Log (depth);
+		//Debug.Log (depth);
 		if (existsUnvistedCell ()) {
 			depth++;
 			if (hasUnvistedNeigbours (move.possibleMoves)) {
@@ -63,7 +63,7 @@ public class BackTracking
 				nextMove.before = move;
 				if (depth > maxDepth) {
 					maxDepth = depth;
-					Debug.Log ("Max depth: " + maxDepth);
+					//Debug.Log ("Max depth: " + maxDepth);
 					end = nextMove;
 				}
 
