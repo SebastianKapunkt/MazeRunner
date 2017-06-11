@@ -44,16 +44,6 @@ public class CreateLevel : MonoBehaviour
 			//Create the outer walls for given extXZ
 			createOuterWalls ();
 
-			//create walls
-			tracker = new BackTracking (xExt, zExt);
-			tracker.generateCourse ();
-
-			for (int x = 0; x < xExt; x++) {
-				for (int z = 0; z < zExt; z++) {
-					placeWallForField (x, z, tracker.walls [x, z]);
-				}
-			}
-
 			//create a maze
 			createMaze ();
 
@@ -140,6 +130,15 @@ public class CreateLevel : MonoBehaviour
 
 	private void createMaze ()
 	{
+		tracker = new BackTracking (xExt, zExt);
+		tracker.generateCourse ();
+
+		for (int x = 0; x < xExt; x++) {
+			for (int z = 0; z < zExt; z++) {
+				placeWallForField (x, z, tracker.walls [x, z]);
+			}
+		}
+
 		//Build the maze from the given set of prefabs
 		for (int x = 0; x < xExt; x++) {
 			for (int z = 0; z < zExt; z++) {
@@ -192,7 +191,9 @@ public class CreateLevel : MonoBehaviour
 		//Check if ball first...
 
 		//Destroy this maze
+
 		//Generate new maze
+
 		//Player has fallen onto ground plane, reset
 	}
 }
