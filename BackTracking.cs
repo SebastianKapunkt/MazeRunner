@@ -47,35 +47,31 @@ public class BackTracking
 		start = field [startField.item1, startField.item2];
 		visitTracker [startField.item1, startField.item2] = true;
 
-		backtracking (start);
+		backtracking (start, 0);
 	}
 
-	private void backtracking (Backtracker move)
+	private void backtracking (Backtracker move, int depth)
 	{
+		if (depth > maxDepth) {
+			maxDepth = depth;
+			//Debug.Log ("Max depth: " + maxDepth);
+			end = move;
+		}
 		//Debug.Log (depth);
 		if (existsUnvistedCell ()) {
-			depth++;
 			if (hasUnvistedNeigbours (move.possibleMoves)) {
 				//Choose randomly one of the unvisited neighbours
 				Backtracker nextMove = randomUnvisitedNeigbour (move.possibleMoves);
 				//Push the current cell to the stack
 				move.next = nextMove;
 				nextMove.before = move;
-				if (depth > maxDepth) {
-					maxDepth = depth;
-					//Debug.Log ("Max depth: " + maxDepth);
-					end = nextMove;
-				}
-
-				end = nextMove;
 				//remove Wall
 				removeWall (move.x, move.z, nextMove.x, nextMove.z);
 				//Make the chosen cell the current cell and mark it as visited
 				visitTracker [nextMove.x, nextMove.z] = true;
-				backtracking (nextMove);
+				backtracking (nextMove, ++depth);
 			} else {
-				depth--;
-				backtracking (move.before);
+				backtracking (move.before, --depth);
 			}
 		}
 	}
