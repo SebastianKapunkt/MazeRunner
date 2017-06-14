@@ -42,8 +42,8 @@ public class BackTracking
 
 	public void generateCourse ()
 	{
-		//Tuple2<int,int> startField = new Tuple2<int,int> (Random.Range (0, xSize - 1), Random.Range (0, zSize - 1));
-		Tuple2<int,int> startField = new Tuple2<int,int> (0, 0);
+		Tuple2<int,int> startField = new Tuple2<int,int> (Random.Range (0, xSize - 1), Random.Range (0, zSize - 1));
+		//Tuple2<int,int> startField = new Tuple2<int,int> (0, 0);
 		start = field [startField.item1, startField.item2];
 		visitTracker [startField.item1, startField.item2] = true;
 
@@ -54,7 +54,6 @@ public class BackTracking
 	{
 		if (depth > maxDepth) {
 			maxDepth = depth;
-			//Debug.Log ("Max depth: " + maxDepth);
 			end = move;
 		}
 		//Debug.Log (depth);
